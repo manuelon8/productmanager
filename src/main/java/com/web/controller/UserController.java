@@ -1,17 +1,68 @@
 package com.web.controller;
 
+ 
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.web.entity.EUser;
+
+import com.web.model.User;
+import com.web.service.IUserService;
 
 @Controller
+@RequestMapping("/views/")
 public class UserController {
 	
-	@RequestMapping("/views/listUser")
+	
+	
+	@Autowired
+	IUserService service;
+	
+	@RequestMapping("listUser")
 	public String getUser(Model model) {
-		model.addAttribute("titulo", "Los Usuarios");
-		model.addAttribute("listadeusuarios", "Todos los Usuarios");
+		List<User> allUser = new ArrayList<User>();
+		allUser=service.getAllUser();
+// 		Date date = StringToDate("2015-12-06 17:03:00");
+ 		User u = new User(Long.valueOf(1), "MANUEL ORLANDO",14642, "manuelon", "ewe",java.util.Date.from( Instant.now() ) );
+//		 
+//		model.addAttribute("titulo", "Los Usuarios");
+		model.addAttribute("listadeusuarios", u);
 		return "/views/listUser";
 	}
+	
+	@PostMapping("/saveuser")
+	public String Guardar(@ModelAttribute EUser eu) {
+		String url="";
+		try {
+			
+			
+//		Date d=	java.util.Date.from( Instant.now());
+//		eu.setFechaNacimiento(d);
+			service.guardar(eu);
+			System.out.println("CLIENTE GUARDADO CON EXITO!!");			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+		return "redirect:/views/listUser";		
+	}
+	
+	@GetMapping("nu")
+	public String nuevoUsuario(Model model) {
+		User u = new User();		 		
+		model.addAttribute("titulo", "Formulario Nuevo Usuario");
+		model.addAttribute("usuario", u);
+		return "/views/frmnuevousuario";
+	}
+	
+	
 
 }
