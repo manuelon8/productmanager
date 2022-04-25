@@ -3,12 +3,7 @@ package org.web.entity;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
@@ -39,6 +34,8 @@ public class EProduct implements Serializable{
 	private int stock;
 	@Column(name = "categoria")
 	private String categoria;
+	@ManyToOne
+	private EUser usuario;
 	
 	
 	

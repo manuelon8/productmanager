@@ -19,15 +19,11 @@ public class User implements Serializable{
 	private Long id;	
 	 
 	private String nombre;
-	
 	private int documento;
-	
 	private String email;
-	
 	private String password;
-	
-	 
 	private Date fechaNacimiento;
+
 	
  
 
@@ -38,6 +34,7 @@ public class User implements Serializable{
 		this.email = u.getEmail();
 		this.password = u.getPassword();
 		this.fechaNacimiento = u.getFechaNacimiento();
+
 	}
 
 	public User() {

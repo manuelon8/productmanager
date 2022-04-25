@@ -21,9 +21,7 @@ import com.web.service.IUserService;
 @Controller
 @RequestMapping("/views/")
 public class UserController {
-	
-	
-	
+
 	@Autowired
 	IUserService service;
 	
@@ -31,11 +29,9 @@ public class UserController {
 	public String getUser(Model model) {
 		List<User> allUser = new ArrayList<User>();
 		allUser=service.getAllUser();
-// 		Date date = StringToDate("2015-12-06 17:03:00");
- 		User u = new User(Long.valueOf(1), "MANUEL ORLANDO",14642, "manuelon", "ewe",java.util.Date.from( Instant.now() ) );
-//		 
-//		model.addAttribute("titulo", "Los Usuarios");
-		model.addAttribute("listadeusuarios", u);
+
+		model.addAttribute("titulo", "Los Usuarios");
+		model.addAttribute("listadeusuarios", allUser);
 		return "/views/listUser";
 	}
 	
