@@ -8,5 +8,8 @@ import org.web.entity.EProduct;
 
 
 public interface ProductRepository extends JpaRepository<EProduct, Long> {
+	
+ 
+	
 
 }

@@ -33,6 +33,8 @@ public class ProductService  implements IProductService {
 	@Override
 	public List<Product> getAllProduct() {
 		List<Product> lp = new ArrayList<Product>();
+		String m;
+		
 		try {
 			lp=this.converter.convertirProducto(repository.findAll());
 		} catch (Exception e) {

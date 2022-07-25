@@ -31,6 +31,7 @@ public class EProduct implements Serializable{
 	@Size(min=5, max=100)
 	@Column(name = "descripcion",   length = 100)
 	private String descripcion;
+	
 	 
 	@Min(1)
 	@Column(name = "stock")
